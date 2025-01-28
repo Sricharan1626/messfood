@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Order Platform</title>
+    <script>
+        function checkScreenSize() {
+          if (window.innerWidth <= 768) {
+            // Redirect to the mobile version if the screen is too small
+            window.location.href = "test2.html";
+          }
+        }
+    
+        document.addEventListener("DOMContentLoaded", checkScreenSize);
+        window.addEventListener("resize", checkScreenSize); // Also check when resizing
+      </script>
+    
+    <style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #17173b;
+    color: white;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+nav a.active {
+    color: #007bff;
+    font-weight: bold;
+    border-left: 4px solid #007bff;
+    padding-left: 8px;
+}
+
+
+.website {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #d5d1d1;
+    border-radius: 20px;
+    padding: 5px 10px;
+    max-width: 550px;
+    flex-grow: 1;
+    margin: 0 auto;
+}
+
+.search {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 16px;
+    outline: none;
+}
+
+.search::placeholder {
+    color: #888;
+}
+
+.search-logo img {
+    height: 25px;
+    background-color: #d5d1d1;
+    display: inline-block;;
+    margin: 0%;
+    border: none;
+
+}
+
+.bell img {
+    height: 35px;
+}
+
+.side-bar {
+    background-color: #17173b;
+    width: 200px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    color: white;
+}
+
+.side-bar button {
+    height: 50px;
+    width: 180px;
+    background-color: #17173b;
+    border: 0;
+    color: white;
+    font-size: 20px;
+    margin: 10px 0;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.side-bar button:hover {
+    background-color: #555;
+}
+
+.side-barline {
+    background-color: white;
+    height: 1px;
+    width: 180px;
+    margin: 10px 0;
+}
+
+main {
+    margin-left: 220px; /* Adjusted for the sidebar width */
+    padding: 100px 20px; /* Ensure no overlap with the fixed header */
+}
+
+.order-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Add spacing between items */
+    margin-top: 20px; /* Ensure proper spacing from the top */
+}
+
+.menu-category {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #17173b;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.menu-item {
+    flex: 1 1 calc(23% - 20px); /* Adjusted flex-basis */
+    margin: 10px;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.menu-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.menu-details h3 {
+    margin: 10px 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.menu-details p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.add-to-cart {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #17173b;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: #555;
+}
+.order-box img{
+    width: 100%;
+    height: 400px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+.time{
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+
+@media (max-width: 1024px) {
+    main {
+        margin-left: 0; /* Remove sidebar margin for smaller screens */
+        padding: 80px 10px;
+    }
+
+    .menu-item {
+        flex: 1 1 calc(48% - 20px); /* Adjust for tablet view */
+    }
+}
+
+@media (max-width: 768px) {
+    .website {
+        font-size: 18px;
+    }
+
+    .search-bar {
+        max-width: 300px;
+    }
+
+    .bell img {
+        height: 25px;
+    }
+
+    .side-bar {
+        width: 60px;
+        padding-top: 20px;
+    }
+
+    .menu-item {
+        flex: 1 1 calc(48% - 20px); /* Adjust for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .search-bar {
+        display: none;
+    }
+
+    .side-bar {
+        width: 50px;
+    }
+
+    .menu-item {
+        flex: 1 1 calc(100% - 20px); /* Full width for mobile */
+    }
+    
+
+}
+
+
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="nav-bar">
+        <div class="website">MESS FOOD</div>
+        <div class="search-bar">
+            <input type="search" id="search" placeholder="Search..." class="search">
+            <button class="search-logo" style="background-color: #d5d1d1; border: none;">
+                <img src="finalimages/search.png" alt="search-logo">
+            </button>
+        </div>
+        <div class="bell">
+            <img src="finalimages/bell.png" alt="bell">
+        </div>
+    </nav>
+</header>
+
+<div class="side-bar">
+        <div>
+            <a href="index.html">            
+        <button>Home</button>
+        </a>
+    </div>
+    <button onclick="window.location.href='about.html'">
+        About
+    </button>
+    <button onclick="window.location.href='donate.html'">
+        Donate
+    </button>
+   
+    <button onclick="window.location.href='cart.html'">
+        Cart
+    </button >
+    <button onclick="window.location.href='orders.html'">
+        Orders
+    </button>
+            
+       
+    <div class="side-barline"></div>
+</div>
+
+<main>
+    <section class="order-box">
+        <div class="menu-category">Beverages</div>
+        <div class="menu-item">
+            <img src="finalimages/download.jpeg" alt="Tea">
+            <div class="menu-details">
+                <h3>Tea</h3>
+                <p>Price: ₹10</p>
+                <p>Estimated Time: 5 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/filter-coffee-recipe8.jpg" alt="Coffee" loading="lazy">
+            <div class="menu-details">
+                <h3>Coffee</h3>
+                <p>Price: ₹15</p>
+                <p class="time">Estimated Time: 5 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/images (1).jpeg" alt="Milk">
+            <div class="menu-details">
+                <h3>Milk</h3>
+                <p>Price: ₹20</p>
+                <p>Estimated Time: 5 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/WhatsApp-Image-2023-04-18-at-4.34.05-PM.webp" alt="Bournvita (Hot)">
+            <div class="menu-details">
+                <h3>Bournvita (Hot)</h3>
+                <p>Price: ₹25</p>
+                <p>Estimated Time: 5 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <!-- Add more beverages -->
+        
+        <div class="menu-category">Paratas</div>
+        <div class="menu-item">
+            <img src="finalimages/onion_parata.jpg" alt="Onion Parata">
+            <div class="menu-details">
+                <h3>Onion Parata</h3>
+                <p>Price: ₹50</p>
+                <p>Estimated Time: 15 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/aloo_parata.jpg" alt="Aloo Parata">
+            <div class="menu-details">
+                <h3>Aloo Parata</h3>
+                <p>Price: ₹50</p>
+                <p>Estimated Time: 15 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/paneer_parata.jpg" alt="Paneer Parata">
+            <div class="menu-details">
+                <h3>Paneer Parata</h3>
+                <p>Price: ₹70</p>
+                <p>Estimated Time: 20 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+
+            </div>
+        </div>
+       
+<!-- Adding the rest of the Paratas -->
+        <div class="menu-item">
+            <img src="finalimages/paneer_cheese_parata.jpg" alt="Paneer Cheese Parata">
+            <div class="menu-details">
+                <h3>Paneer Cheese Parata</h3>
+                <p>Price: ₹80</p>
+                <p>Estimated Time: 20 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/malabari_porota.jpg" alt="Malabari Porota">
+            <div class="menu-details">
+                <h3>Malabari Porota</h3>
+                <p>Price: ₹60</p>
+                <p>Estimated Time: 15 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+
+        <div class="menu-category">Rice Family</div>
+        <div class="menu-item">
+            <img src="finalimages/veg_fried_rice.jpg" alt="Veg Fried Rice">
+            <div class="menu-details">
+                <h3>Veg Fried Rice</h3>
+                <p>Price: ₹70</p>
+                <p>Estimated Time: 20 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/veg_schezwan_fried_rice.jpg" alt="Veg Schezwan Fried Rice">
+            <div class="menu-details">
+                <h3>Veg Schezwan Fried Rice</h3>
+                <p>Price: ₹80</p>
+                <p>Estimated Time: 20 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/egg_fried_rice.jpg" alt="Egg Fried Rice">
+            <div class="menu-details">
+                <h3>Egg Fried Rice</h3>
+                <p>Price: ₹90</p>
+                <p>Estimated Time: 25 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/egg_schezwan_rice.jpg" alt="Egg Schezwan Rice">
+            <div class="menu-details">
+                <h3>Egg Schezwan Rice</h3>
+                <p>Price: ₹100</p>
+                <p>Estimated Time: 25 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <!-- Add more rice items similarly -->
+
+        <div class="menu-category">Noodles</div>
+        <div class="menu-item">
+            <img src="finalimages/veg_hakka_noodles.jpg" alt="Veg Hakka Noodles">
+            <div class="menu-details">
+                <h3>Veg Hakka Noodles</h3>
+                <p>Price: ₹70</p>
+                <p>Estimated Time: 20 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/veg_schezwan_noodles.jpg" alt="Veg Schezwan Noodles">
+            <div class="menu-details">
+                <h3>Veg Schezwan Noodles</h3>
+                <p>Price: ₹80</p>
+                <p>Estimated Time: 20 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/egg_noodles.jpg" alt="Egg Noodles">
+            <div class="menu-details">
+                <h3>Egg Noodles</h3>
+                <p>Price: ₹90</p>
+                <p>Estimated Time: 25 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/egg_schezwan_noodles.jpg" alt="Egg Schezwan Noodles">
+            <div class="menu-details">
+                <h3>Egg Schezwan Noodles</h3>
+                <p>Price: ₹100</p>
+                <p>Estimated Time: 25 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <!-- Add more noodles items similarly -->
+
+        <div class="menu-category">Multi Cuisine</div>
+        <div class="menu-item">
+            <img src="finalimages/cheese_grilled_sandwich.jpg" alt="Cheese Grilled Sandwich">
+            <div class="menu-details">
+                <h3>Cheese Grilled Sandwich</h3>
+                <p>Price: ₹60</p>
+                <p>Estimated Time: 10 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/veg_sandwich.jpg" alt="Veg Sandwich">
+            <div class="menu-details">
+                <h3>Veg Sandwich</h3>
+                <p>Price: ₹50</p>
+                <p>Estimated Time: 10 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <!-- Add more multi-cuisine items similarly -->
+
+        <div class="menu-category">Snacks / Bites (Non-Veg)</div>
+        <div class="menu-item">
+            <img src="finalimages/chicken_chilly.jpg" alt="Chicken Chilly">
+            <div class="menu-details">
+                <h3>Chicken Chilly</h3>
+                <p>Price: ₹120</p>
+                <p>Estimated Time: 20 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/chicken_manchurian.jpg" alt="Chicken Manchurian">
+            <div class="menu-details">
+                <h3>Chicken Manchurian</h3>
+                <p>Price: ₹130</p>
+                <p>Estimated Time: 20 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <!-- Add more non-veg snacks similarly -->
+
+        <div class="menu-category">Snacks / Bites (Veg)</div>
+        <div class="menu-item">
+            <img src="finalimages/paneer_65.jpg" alt="Paneer 65">
+            <div class="menu-details">
+                <h3>Paneer 65</h3>
+                <p>Price: ₹110</p>
+                <p>Estimated Time: 20 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/paneer_chilly.jpg" alt="Paneer Chilly">
+            <div class="menu-details">
+                <h3>Paneer Chilly</h3>
+                <p>Price: ₹120</p>
+                <p>Estimated Time: 20 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <!-- Add more veg snacks similarly -->
+
+        <div class="menu-category">Dosa Family</div>
+        <div class="menu-item">
+            <img src="finalimages/plain_dosa.jpg" alt="Plain Dosa">
+            <div class="menu-details">
+                <h3>Plain Dosa</h3>
+                <p>Price: ₹40</p>
+                <p>Estimated Time: 10 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/masala_dosa.jpg" alt="Masala Dosa">
+            <div class="menu-details">
+                <h3>Masala Dosa</h3>
+                <p>Price: ₹50</p>
+                <p>Estimated Time: 15 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <!-- Add more dosa items similarly -->
+
+        <div class="menu-category">Staff Meal</div>
+        <div class="menu-item">
+            <img src="finalimages/staff_meal.jpg" alt="Staff Meal">
+            <div class="menu-details">
+                <h3>Staff Meal</h3>
+                <p>Price: ₹30</p>
+                <p>Estimated Time: 10 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <!-- Continue with the Staff Meal category -->
+        <div class="menu-item">
+            <img src="finalimages/staff_breakfast.jpg" alt="Staff Breakfast">
+            <div class="menu-details">
+                <h3>Staff Breakfast</h3>
+                <p>Price: ₹20</p>
+                <p>Estimated Time: 10 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/staff_snacks.jpg" alt="Staff Snacks">
+            <div class="menu-details">
+                <h3>Staff Snacks</h3>
+                <p>Price: ₹25</p>
+                <p>Estimated Time: 10 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+
+        <div class="menu-category">Egg Characters</div>
+        <div class="menu-item">
+            <img src="finalimages/double_omelette.jpg" alt="Double Omelette">
+            <div class="menu-details">
+                <h3>Double Omelette</h3>
+                <p>Price: ₹40</p>
+                <p>Estimated Time: 10 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/egg_bhurjee.jpg" alt="Egg Bhurjee">
+            <div class="menu-details">
+                <h3>Egg Bhurjee</h3>
+                <p>Price: ₹35</p>
+                <p>Estimated Time: 10 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <!-- Add more egg items similarly -->
+
+        <div class="menu-category">Guest Meal</div>
+        <div class="menu-item">
+            <img src="finalimages/breakfast.jpg" alt="Breakfast">
+            <div class="menu-details">
+                <h3>Breakfast</h3>
+                <p>Price: ₹50</p>
+                <p>Estimated Time: 15 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/g_snack.jpg" alt="G. Snack">
+            <div class="menu-details">
+                <h3>G. Snack</h3>
+                <p>Price: ₹30</p>
+                <p>Estimated Time: 10 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <!-- Add more guest meal items similarly -->
+
+        <div class="menu-category">Day Special (Occasional)</div>
+        <div class="menu-item">
+            <img src="finalimages/chicken_curry.jpg" alt="Chicken Curry">
+            <div class="menu-details">
+                <h3>Chicken Curry</h3>
+                <p>Price: ₹150</p>
+                <p>Estimated Time: 30 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="finalimages/paneer_curry.jpg" alt="Paneer Curry">
+            <div class="menu-details">
+                <h3>Paneer Curry</h3>
+                <p>Price: ₹130</p>
+                <p>Estimated Time: 30 mins</p>
+                <a href="#" class="add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+        <!-- Add more day special items similarly -->
+    </section>
+</main>
+<script>
+    // Cart array to store items
+    let cart = [];
+
+    // Select all "Add to Cart" buttons
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+    // Add event listeners to each button
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', event => {
+            event.preventDefault(); // Prevent default anchor behavior
+
+            // Get the item's details from the button or parent container
+            const itemElement = button.closest('.menu-item');
+            const itemName = itemElement.querySelector('h3').innerText;
+            const itemPrice = itemElement.querySelector('p').innerText.replace('Price: ₹', '').trim();
+
+            // Add item to the cart
+            const item = {
+                name: itemName,
+                price: parseFloat(itemPrice),
+                quantity: 1,
+            };
+
+            addToCart(item);
+        });
+    });
+
+    // Function to add item to cart
+    function addToCart(item) {
+        // Check if the item already exists in the cart
+        const existingItem = cart.find(cartItem => cartItem.name === item.name);
+
+        if (existingItem) {
+            // If item exists, increment the quantity
+            existingItem.quantity++;
+        } else {
+            // Otherwise, add new item to the cart
+            cart.push(item);
+        }
+
+        // Update cart UI
+        updateCart();
+    }
+
+    // Function to update cart UI
+    function updateCart() {
+        const cartCount = document.querySelector('.cart-count');
+        if (cartCount) {
+            cartCount.innerText = cart.reduce((total, item) => total + item.quantity, 0);
+        }
+
+        // For debugging: Log the cart to the console
+        console.log('Cart:', cart);
+    }
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+

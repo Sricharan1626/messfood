@@ -1,0 +1,274 @@
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Layout with Different Headers</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    /* Desktop Header */
+    .desktop-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #17173b;
+      color: white;
+      padding: 10px 20px;
+    }
+
+    .desktop-header .website {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .desktop-header .nav-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .desktop-header .nav-buttons button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .desktop-header .nav-buttons button:hover {
+      text-decoration: underline;
+    }
+
+    .desktop-header .search-bar {
+      display: flex;
+      align-items: center;
+      background-color: #d5d1d1;
+      border-radius: 20px;
+      padding: 5px 10px;
+      flex-grow: 1;
+      max-width: 500px;
+      margin: 0 20px;
+    }
+
+    .desktop-header .search-bar input {
+      flex: 1;
+      border: none;
+      background: none;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .desktop-header .search-bar img {
+      height: 20px;
+    }
+
+    .desktop-header .bell-icon img {
+      height: 25px;
+    }
+
+    /* Mobile Header */
+    .mobile-header {
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      position: fixed; /* Make the mobile header fixed */
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .mobile input{
+        border-radius: 16px;
+    }
+
+    .mobile-header button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .mobile-header .search-icon {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    /* Sidebar (Desktop Only) */
+    .side-bar {
+      display: none;
+    }
+
+    main {
+     
+      padding: 80px 20px;
+    }
+
+    /* Footer (Mobile Only) */
+    footer {
+      display: none;
+    }
+      /* Media Queries for Mobile */
+      @media (max-width: 768px) {
+      .desktop-header {
+        display: none;
+      }
+
+      .mobile-header {
+       display: flex;
+      }
+
+      .side-bar {
+        display: none;
+      }
+
+      main {
+        margin-left: 0;
+        padding: 100px 20px;
+      }
+
+      footer {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #007bff;
+        color: white;
+        justify-content: space-around;
+        padding: 10px 0;
+        z-index: 1000;
+      }
+
+      footer button {
+        flex: 1;
+        text-align: center;
+        font-size: 14px;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+      }
+
+      footer button:hover {
+        background-color: #0056b3;
+      }
+    
+    .search-icon {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      position: absolute; /* Fix position */
+      right: 20px; /* Adjust position */
+      top: 13px; /* Adjust position */
+    }
+    .search {
+        border-radius: 16px;
+        border: none;
+        width: auto;
+        padding: 5px 10px ;
+        cursor: pointer;
+    }
+
+.mobile-header .search-container {
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 18px;
+      padding: 5px 10px;
+      flex-grow: 1;
+      margin: 0 10px;
+      position: relative; /* Add relative positioning */
+    }
+
+    .mobile-header .search-container input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      padding: 5px 10px;
+      border-radius: 16px;
+    }
+
+    .mobile-header .search-container img {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      position: absolute; /* Position the icon inside the input box */
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+}
+
+  </style>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Desktop Header -->
+    <header class="desktop-header">
+      <div class="website">MESS FOOD</div>
+      <div class="nav-buttons">
+        <button onclick="window.location.href='test10.html'">Home</button>
+        <button onclick="window.location.href='about.html'">About</button>
+        <button onclick="window.location.href='donate1.html'">Donate</button>
+      </div>
+     
+      <div class="search-bar">
+        <input type="search" placeholder="Search...">
+        <img src="finalimages/search.png" alt="Search Icon">
+      </div>
+      <div class="nav-buttons">
+        <button onclick="window.location.href='cart1.html'">Cart</button>
+        <button onclick="window.location.href='orders1.html'">Order</button>
+      </div>
+      <div class="bell-icon">
+        <img src="finalimages/bell.png" alt="Notification Bell">
+      </div>
+    </header>
+  
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+      <button>Account</button>
+      <div class="search-container">
+        <input type="text" placeholder="Search..." class="search">
+        <img src="finalimages/search.png" alt="search-icon" class="search-icon">
+      </div>
+      <button>Settings</button>
+    </header>
+    <main>
+      <h1>Please donate Us</h1>
+      <p>Our mission is to provide food to the needy and the poor. We are a non-profit organization that works to provide food to the people who are in need. We have a team of volunteers who work tirelessly to make sure that no one goes hungry. We believe that everyone deserves to have access to food, and we are committed to making that happen.</p>
+  </main>
+    <footer>
+        <button onclick="window.location.href='donate1.html'">
+          <span class="material-icons">volunteer_activism</span>
+          <span>Donate</span>
+        </button>
+        <button onclick="window.location.href='about.html'">
+          <span class="material-icons">info</span>
+          <span>About</span>
+        </button>
+        <button onclick="window.location.href='test10.html'">
+          <span class="material-icons">home</span>
+          <span>Home</span>
+        </button>
+        <button onclick="window.location.href='cart1.html'">
+          <span class="material-icons">shopping_cart</span>
+          <span>Cart</span>
+        </button>
+        <button onclick="window.location.href='order1.html'">
+          <span class="material-icons">receipt</span>
+          <span>Order</span>
+        </button>
+      </footer>
+    <main>
+</html>

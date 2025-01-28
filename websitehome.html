@@ -1,0 +1,272 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design</title>
+    <style>
+      header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+      /* Reset and Base Styles */
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      header {
+        width: 100%;
+        display: fixed;
+      }
+
+      .nav-bar {
+        background-color: rgb(23, 23, 59);
+        padding: 10px;
+        display: flex; 
+        align-items: center;
+        color: white;
+        display: fixed;
+      }
+
+      .website {
+        font-size: 20px;
+        font-weight: bold;
+        margin-left: 20px;
+      
+      }
+
+      .search-bar {
+        display: flex;
+        align-items: center;
+        background-color: #d5d1d1;
+        border-radius: 20px;
+        padding: 5px 10px;
+        flex-grow: 1;
+        max-width: 550px;
+        margin: 0 auto;
+        margin-left: 260px;
+        
+      }
+
+      .search {
+        flex: 1;
+        background: none;
+        border: none;
+        color: #333;
+        font-size: 16px;
+        outline: none;
+      }
+
+      .search::placeholder {
+        color: #888;
+      }
+
+      .search-logo {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      .search-logo img {
+        height: 25px;
+      }
+
+      .bell {
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .bell img {
+        height: 35px;
+      }
+      .bar{
+        margin-left: 0px;
+      }
+
+      .side-bar {
+        background-color: rgb(23, 23, 59);
+        width: 200px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+        color: white;
+        padding: 0%;
+        position: fixed;
+    top: auto;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    z-index: 999;
+
+
+        
+      }
+
+      .container {
+        display: inline-block;
+        cursor: pointer;
+        margin-right: 15px;
+        margin-left: 20px;
+      }
+
+      .bar1, .bar2, .bar3 {
+        width: 25px;
+        height: 2px;
+        background-color: #ebe6e6;
+        margin: 6px 0;
+        transition: 0.4s;
+      }
+
+      .change .bar1 {
+        transform: translate(0, 11px) rotate(-45deg);
+      }
+
+      .change .bar2 {
+        opacity: 0;
+      }
+
+      .change .bar3 {
+        transform: translate(0, -11px) rotate(45deg);
+      }
+
+      .side-bar button{
+          height: 50px;
+          width: 188px; 
+          background-color: 
+          rgb(23, 23, 59);
+            border:0px;
+            color: white; 
+            font-size: 20px;
+            margin-top: 2px;
+            font-family: Arial, Helvetica, sans-serif;
+            border-radius: 3px;
+            margin-bottom: 10px;
+      }
+
+      .side-bar button:hover{
+          opacity: 0.5;
+          background-color: blue;
+      }
+      .side-barline{
+          background-color: white; 
+          height:1px; 
+          color:rgb(23, 23, 59); 
+          width: 200px; 
+          border: none; ;
+      }
+      .webimg img{
+      /* Push to the right of the sidebar */
+    width: 300px; /* Take the remaining width after sidebar */
+    height: auto; /* Maintain aspect ratio */
+    /* Ensure it's below the nav-bar but visible */
+  }
+       .oder-box{
+        margin-top: 80px;
+        margin-left: 200px;
+        width: 100hv;
+        height: auto;
+       }
+    
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .website {
+          font-size: 16px;
+          margin-left: 10px;
+        }
+
+        .search-bar {
+          max-width: 300px;
+        }
+
+        .bell img {
+          height: 25px;
+        }
+
+        .side-bar {
+          width: 60px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .search-bar {
+          display: none;
+        }
+
+        .side-bar {
+          width: 50px;
+        }
+
+        .bell {
+          margin-left: auto;
+        }
+      }
+    </style>
+
+  </head>
+  <body class="body">
+
+    <header>
+      <nav class="nav-bar">
+        <div class="container" onclick="myFunction(this)">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+        <div class="website">
+          <p>MESS FOOD</p>
+        </div>
+        <div class="search-bar">
+          <input type="search" placeholder="Search..." class="search">
+          <button class="search-logo">
+            <img src="search.png" alt="search-logo">
+          </button>
+        </div>
+        <div class="bell">
+          <img src="bell.png" alt="bell">
+        </div>
+      </nav>
+      <div class="side-bar">
+        <div>
+            <button>Home</button>
+            <button>About</button>
+            <button>Menu</button>
+            <button>catagory</button>
+            <button>Oders</button>
+        </div>
+        <div class="side-barline">
+            <p >-</p>
+        </div>
+        </div>
+    
+    </header>
+
+      <main>
+        <section class="oder-box">
+         
+          <div class="webimg">
+            <img src="54477040.webp" alt="parata" >             
+          </div>
+          <div>
+            
+          </div>
+          
+        </section>
+      </main>
+
+    <script>
+      function myFunction(x) {
+        x.classList.toggle("change");
+      }
+    </script>
+  </body>
+  </html>

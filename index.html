@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Page Redirect</title>
+  <script>
+    // Function to check screen size and redirect
+    function checkScreenSize() {
+      if (window.innerWidth <= 768) {
+        // Redirect to the mobile version if screen width is 768px or less
+        if (!window.location.href.includes("test10.html")) {
+          window.location.href = "test10.html";
+        }
+      } else {
+        // Redirect to the desktop version for larger screens
+        if (!window.location.href.includes("test10.html")) {
+          window.location.href = "test10.html";
+        }
+      }
+    }
+
+    // Event listeners for page load and resize
+    document.addEventListener("DOMContentLoaded", checkScreenSize);
+    window.addEventListener("resize", function () {
+      checkScreenSize();
+    });
+  </script>
+</head>
+<body>
+  <p>Resize the window to trigger redirection.</p>
+</body>
+</html>
